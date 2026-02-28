@@ -29,7 +29,7 @@ export default function Home() {
     // SMART INDICATOR: Show tooltip after 20 seconds
     const tooltipTimer = setTimeout(() => {
       setShowTooltip(true);
-    }, 20000);
+    }, 4000);
 
     return () => {
       clearInterval(interval);
@@ -110,20 +110,32 @@ export default function Home() {
       )}
 
       {/* HERO SECTION */}
+      {/* HERO SECTION */}
       <section id="home" className="relative h-[65vh] min-h-[500px] max-h-[800px] flex items-center px-6 md:px-16 overflow-hidden">
         {banners.map((banner, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${index === current ? "opacity-100 scale-105" : "opacity-0"}`}
+            className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${index === current ? "opacity-100 scale-105" : "opacity-0 scale-100"}`}
             style={{
               backgroundImage: `url(${banner})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              transition: "transform 8s ease-in-out, opacity 1s",
+              // We keep the slow zoom-in effect (8s) but slow down the cross-fade (2000ms)
+              transition: "transform 8s ease-in-out, opacity 2s ease-in-out",
             }}
           />
         ))}
+
+        {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950/70 via-blue-900/40 to-transparent"></div>
+
+        {/* NAVIGATION DOTS */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+          {banners.map((_, i) => (
+            <button key={i} onClick={() => setCurrent(i)} className={`h-2 rounded-full transition-all duration-500 ${current === i ? "w-8 bg-blue-400" : "w-2 bg-white/50 hover:bg-white"}`} aria-label={`Go to slide ${i + 1}`} />
+          ))}
+        </div>
+
         <div className="relative z-10 w-full max-w-7xl mx-auto">
           <div className="max-w-2xl animate-fadeIn">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-white drop-shadow-md">
