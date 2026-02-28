@@ -109,7 +109,7 @@ background-image: url("/images/banner_1.png");
 
 ### Hero banner slider
 
-The home route (`app/routes/home.tsx`) uses a simple auto‑rotating slider with a fade transition and clickable dots. The component maintains `current` index state and updates it every 4 seconds via `setInterval` in a `useEffect` hook.
+The home route (`app/routes/_index.tsx`) uses a simple auto‑rotating slider with a fade transition and clickable dots. The component maintains `current` index state and updates it every 4 seconds via `setInterval` in a `useEffect` hook.
 
 The primary button in the hero now scrolls directly to the services section (ID `#services`), and global CSS includes `html { scroll-behavior: smooth; }` for a polished transition. You can adjust the button text (`View Our Expertise`, `Explore Our Services`, etc.) as needed.
 
@@ -139,7 +139,7 @@ To keep the page organized the code is now modular:
 - `app/components/FloatingButton.tsx` – displays the glowing button with a delayed tooltip.
 - `app/components/ServicesSection.tsx` – contains the service cards grid used on the home page.
 
-The `app/routes/home.tsx` file simply composes these pieces and manages slider state, navigation, and layout.
+The `app/routes/_index.tsx` file simply composes these pieces and manages slider state, navigation, and layout.
 
 The rest of the homepage relies on the same `public/images` assets for services and about sections.
 
@@ -151,7 +151,7 @@ The rest of the homepage relies on the same `public/images` assets for services 
    ```
 2. Sign up at https://www.emailjs.com/ and create a service (e.g. Gmail) and a template.
 3. Copy your **Service ID**, **Template ID**, and **Public Key** from the EmailJS dashboard.
-4. In `app/routes/home.tsx`, modify the `handleSubmit` function with those values:
+4. In `app/routes/_index.tsx`, modify the `handleSubmit` function with those values:
 
    ```js
    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", e.currentTarget, "YOUR_PUBLIC_KEY");
